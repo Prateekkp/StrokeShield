@@ -78,8 +78,3 @@ Future enhancements could include:
 - Expanding the dataset or incorporating real-time health data.
 
 This project demonstrates the power of combining machine learning with user-friendly design to address real-world challenges.
-
-# Frontend Setup (in a new terminal)
-cd ../frontend
-npm install  # Install Node.js dependencies
-npm start  # Start React app (runs on http://localhost:3000)
