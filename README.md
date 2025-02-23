@@ -79,26 +79,6 @@ Future enhancements could include:
 
 This project demonstrates the power of combining machine learning with user-friendly design to address real-world challenges.
 
----
-
-## Setup Instructions
-
-### Prerequisites
-- Python 3.7+
-- Node.js 14+
-- Git
-
-### Installation
-```bash
-# Clone the repository
-git clone https://github.com/your-username/stroke-prediction.git
-cd stroke-prediction
-
-# Backend Setup
-cd backend
-pip install -r requirements.txt  # Install Python dependencies
-python app.py  # Start Flask server (runs on http://localhost:5000)
-
 # Frontend Setup (in a new terminal)
 cd ../frontend
 npm install  # Install Node.js dependencies
