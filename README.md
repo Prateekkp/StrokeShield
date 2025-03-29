@@ -93,6 +93,6 @@ This project is a strong proof-of-concept for AI in health-tech, demonstrating p
 📌 **LinkedIn:** [linkedin.com/in/prateekkp](https://www.linkedin.com/in/prateekkp/)  
 
 
-## **If you found this project useful, don't forget to give it a ⭐ on GitHub!**
+**If you found this project useful, don't forget to give it a ⭐ on GitHub!**
 
    
