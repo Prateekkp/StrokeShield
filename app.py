@@ -30,6 +30,13 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# Set the page title and favicon
+st.set_page_config(
+    page_title="StrokeShield",  # This sets the browser tab name
+    page_icon="🩺",  # You can change this to a relevant emoji or a custom favicon
+    layout="centered"  # Options: "wide", "centered"
+)
+
 # Title & Description
 st.markdown('<p class="title">🧠 Stroke Risk Prediction</p>', unsafe_allow_html=True)
 st.markdown('<p class="subtitle">Fill in your details below to check your stroke risk.</p>', unsafe_allow_html=True)
