@@ -3,7 +3,7 @@ import pandas as pd
 from joblib import load
 
 # Load the trained model
-model = load("stroke_prediction_model.joblib")  # Ensure the model file is in the same directory
+model = load("./models/stroke_prediction_model.joblib") 
 
 # Custom Styling
 st.markdown(
