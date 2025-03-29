@@ -2,10 +2,17 @@ import streamlit as st
 import pandas as pd
 from joblib import load
 
-# Load the trained model
-model = load("./models/stroke_prediction_model.joblib") 
+# ---- Set Page Configuration ----
+st.set_page_config(
+    page_title="StrokeShield",  # Browser Tab Name
+    page_icon="🩺",  # Custom Favicon
+    layout="centered"  # Options: "wide", "centered"
+)
 
-# Custom Styling
+# ---- Load the Trained Model ----
+model = load("./models/stroke_prediction_model.joblib")
+
+# ---- Custom Styling ----
 st.markdown(
     """
     <style>
@@ -14,8 +21,8 @@ st.markdown(
         .subtitle { text-align: center; font-size: 18px; color: #4a4a4a; margin-bottom: 20px; }
         .footer { text-align: center; font-size: 14px; color: #888888; margin-top: 40px; }
         .stButton>button { background-color: #1f77b4; color: white; border-radius: 10px; font-size: 16px; padding: 8px 20px; }
-        .stColumns { display: flex; justify-content: space-between; padding: 15px 0; }  /* Increased padding */
-        .stColumn { padding: 0 20px; }  /* Increased padding */
+        .stColumns { display: flex; justify-content: space-between; padding: 15px 0; }
+        .stColumn { padding: 0 20px; }
         .result-box {
             text-align: center; 
             font-size: 20px; 
@@ -30,28 +37,22 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Set the page title and favicon
-st.set_page_config(
-    page_title="StrokeShield",  # This sets the browser tab name
-    page_icon="🩺",  # You can change this to a relevant emoji or a custom favicon
-    layout="centered"  # Options: "wide", "centered"
-)
-
-# Title & Description
-st.markdown('<p class="title">🧠 Stroke Risk Prediction</p>', unsafe_allow_html=True)
+# ---- Title & Description ----
+st.markdown('<p class="title">🧠 StrokeShield: AI-Powered Stroke Risk Prediction</p>', unsafe_allow_html=True)
 st.markdown('<p class="subtitle">Fill in your details below to check your stroke risk.</p>', unsafe_allow_html=True)
 
-# Function to make predictions
+# ---- Function to Make Predictions ----
 def predict_stroke(input_data):
     df = pd.DataFrame([input_data])
     prediction = model.predict(df)[0]
+    
     if prediction == 0:
         return "🟢 Low Risk (No Stroke)", "green-box"
     else:
         return "🔴 High Risk (Possible Stroke)", "red-box"
 
-# Layout: Three columns with more spacing
-col1, space1, col2, space2, col3 = st.columns([1, 0.4, 1, 0.4, 1])
+# ---- Layout: Three Columns for Input Fields ----
+col1, col2, col3 = st.columns(3)
 
 with col1:
     st.markdown("### 🔢 Personal Info")
@@ -71,11 +72,11 @@ with col3:
     residence_type = st.radio("Residence Type", ["Urban", "Rural"])
     smoking_status = st.selectbox("Smoking Status", ["formerly smoked", "never smoked", "smokes", "Unknown"])
 
-# Convert toggle values to 0 or 1
+# ---- Convert Toggle Values to 0 or 1 ----
 hypertension = 1 if hypertension else 0
 heart_disease = 1 if heart_disease else 0
 
-# Prepare input data
+# ---- Prepare Input Data ----
 input_data = {
     "age": age,
     "hypertension": hypertension,
@@ -88,17 +89,21 @@ input_data = {
     "smoking_status": smoking_status
 }
 
-# Add space before button
+# ---- Space Before Button ----
 st.write("")
 st.write("")
 
-# Center-align the button
+# ---- Center the Button ----
 col_center = st.columns([1, 3, 1])[1]
 with col_center:
     if st.button("🔍 Predict Stroke Risk", use_container_width=True):
         result_text, box_class = predict_stroke(input_data)
         st.markdown(f'<div class="result-box {box_class}">{result_text}</div>', unsafe_allow_html=True)
 
-# Footer
+# ---- Footer ----
 st.markdown('<p class="footer">🔬 Powered by Machine Learning | Developed with ❤️ by <b>Prateek Kumar Prasad</b> using Streamlit</p>', unsafe_allow_html=True)
 
+# ---- Inform Users About App Sleep Mode ----
+st.markdown("""
+💡 *Note: If the app was inactive for a while, it may take a few seconds to wake up. Just click 'Predict Stroke Risk' and wait patiently!*  
+""")
